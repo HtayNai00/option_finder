@@ -1,0 +1,37 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.sqlite
+*.db
+
+# ---- Data ----
+data/
+*.csv
+*.parquet
+*.feather
+*.db
+*.sqlite3
+
+# ---- Notebooks ----
+.ipynb_checkpoints/
+*.ipynb
+
+# ---- Logs & cache ----
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+.cache/
+dist/
+build/
+
+# ---- Environ

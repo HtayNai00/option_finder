@@ -1,0 +1,14 @@
+universe_file: config/tickers.csv
+expiries_max_days: 30
+expiries_to_pull_max: 4         # safety cap in case many weeklies fit ≤30d
+option_type: put
+premium_method: mid              # (bid+ask)/2, fallback to last
+min_premium: 0.05
+default_target_drop_pct: 0.10    # 10% (used later in UI)
+liquidity_warn:
+  open_interest: 100
+  volume: 50
+timezone_display: America/New_York
+timestamp_store_tz: UTC
+snapshot_root: data/snapshots    # Parquet target
+raw_dump_root: data/raw          # optional CSV dumps per ticker/expiry

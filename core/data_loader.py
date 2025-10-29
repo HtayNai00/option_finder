@@ -44,11 +44,11 @@ def load_latest_parquet(path: str = LATEST_PARQUET) -> pd.DataFrame:
         
         # Show data freshness info
         if age_hours > 24:
-            st.warning(f"⚠️ Data is {age_hours:.1f} hours old. Consider updating.")
+            st.warning(f"Data is {age_hours:.1f} hours old. Consider updating.")
         elif age_hours > 1:
-            st.info(f"ℹ️ Data is {age_hours:.1f} hours old.")
+            st.info(f"Data is {age_hours:.1f} hours old.")
         else:
-            st.success(f"✅ Data is fresh ({age_hours*60:.0f} minutes old)")
+            st.success(f"Data is fresh ({age_hours*60:.0f} minutes old)")
         
         return df
     except Exception as e:
@@ -91,7 +91,7 @@ def filter_expired_options(df: pd.DataFrame) -> pd.DataFrame:
         expired_contracts = total_contracts - active_contracts
         
         if expired_contracts > 0:
-            st.info(f"🗑️ Filtered out {expired_contracts} expired contracts. Showing {active_contracts} active contracts.")
+            st.info(f"Filtered out {expired_contracts} expired contracts. Showing {active_contracts} active contracts.")
         
         return active_df
         
@@ -242,13 +242,13 @@ def refresh_data_from_api():
         if result.returncode == 0:
             # After refreshing, also clean up expired data
             cleanup_expired_data()
-            st.success("✅ Data refreshed and expired contracts removed!")
+            st.success("Data refreshed and expired contracts removed!")
             st.rerun()  # Reload the page with new data
         else:
-            st.error(f"❌ Error refreshing data: {result.stderr}")
+            st.error(f"Error refreshing data: {result.stderr}")
             
     except Exception as e:
-        st.error(f"❌ Error refreshing data: {e}")
+        st.error(f"Error refreshing data: {e}")
 
 
 def cleanup_expired_data(path: str = LATEST_PARQUET):
@@ -271,10 +271,10 @@ def cleanup_expired_data(path: str = LATEST_PARQUET):
         # Save the cleaned data back to the file
         if len(cleaned_df) < len(df):
             cleaned_df.to_parquet(path, index=False)
-            print(f"🗑️ Cleaned up expired data. Removed {len(df) - len(cleaned_df)} expired contracts.")
+            print(f"Cleaned up expired data. Removed {len(df) - len(cleaned_df)} expired contracts.")
         
     except Exception as e:
-        print(f"❌ Error cleaning up expired data: {e}")
+        print(f"Error cleaning up expired data: {e}")
 
 
 def filter_expired_options_silent(df: pd.DataFrame) -> pd.DataFrame:

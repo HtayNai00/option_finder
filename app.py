@@ -168,25 +168,25 @@ def render_header():
         if freshness["exists"]:
             age_hours = freshness["age_hours"]
             if age_hours < 1:
-                st.success(f"✅ Fresh ({age_hours*60:.0f}m)")
+                st.success(f"Fresh ({age_hours*60:.0f}m)")
             elif age_hours < 24:
-                st.warning(f"⚠️ {age_hours:.1f}h old")
+                st.warning(f"{age_hours:.1f}h old")
             else:
-                st.error(f"❌ {age_hours:.1f}h old")
+                st.error(f"{age_hours:.1f}h old")
         else:
-            st.error("❌ No data")
+            st.error("No data")
     
     with col3:
         # Refresh and ML training buttons
         col3a, col3b = st.columns(2)
         
         with col3a:
-            if st.button("🔄 Refresh", help="Update options data from API", use_container_width=True):
+            if st.button("Refresh", help="Update options data from API", use_container_width=True):
                 from core.data_loader import refresh_data_from_api
                 refresh_data_from_api()
         
         with col3b:
-            if st.button("🤖 Train ML", help="Train ML model for predictions", use_container_width=True):
+            if st.button("Train ML", help="Train ML model for predictions", use_container_width=True):
                 with st.spinner("Training ML model..."):
                     try:
                         import subprocess
@@ -194,12 +194,12 @@ def render_header():
                         result = subprocess.run([sys.executable, "train_ml_model.py"], 
                                               capture_output=True, text=True)
                         if result.returncode == 0:
-                            st.success("✅ ML model trained successfully!")
+                            st.success("ML model trained successfully!")
                             st.rerun()
                         else:
-                            st.error(f"❌ Training failed: {result.stderr}")
+                            st.error(f"Training failed: {result.stderr}")
                     except Exception as e:
-                        st.error(f"❌ Training error: {e}")
+                        st.error(f"Training error: {e}")
 
 
 def render_filters(df_all, params):
@@ -790,7 +790,7 @@ def main():
     
     # Auto-refresh if data is stale (older than 1 hour)
     if freshness.get("needs_refresh", False) and freshness.get("exists", False):
-        st.info("🔄 Data is stale. Auto-refreshing...")
+        st.info("Data is stale. Auto-refreshing...")
         from core.data_loader import refresh_data_from_api
         refresh_data_from_api()
         return

@@ -19,82 +19,82 @@ from core.analytics import bs_greeks_one, compute_profit_metrics
 
 def train_ml_model():
     """Train the ML model on current options data."""
-    print("🤖 Training Options ML Model...")
+    print("Training Options ML Model...")
     print("=" * 50)
     
     try:
         # Load data
-        print("📊 Loading options data...")
+        print("Loading options data...")
         df = load_latest_parquet()
         
         if df.empty:
-            print("❌ No data available for training")
+            print("No data available for training")
             return False
         
-        print(f"✅ Loaded {len(df)} options contracts")
+        print(f"Loaded {len(df)} options contracts")
         
         # Create ML predictor
         predictor = OptionsMLPredictor()
         
         # Train model
-        print("🧠 Training ML model...")
+        print("Training ML model...")
         metrics = predictor.train_model(df)
         
         if metrics:
-            print("✅ Model training completed!")
-            print(f"📈 Best Model: {metrics.get('best_model', 'Unknown')}")
-            print(f"📊 R² Score: {metrics.get('r2_score', 0):.4f}")
-            print(f"📉 MSE: {metrics.get('mse', 0):.4f}")
-            print(f"🔢 Features: {metrics.get('n_features', 0)}")
-            print(f"📋 Samples: {metrics.get('n_samples', 0)}")
+            print("Model training completed!")
+            print(f"Best Model: {metrics.get('best_model', 'Unknown')}")
+            print(f"R² Score: {metrics.get('r2_score', 0):.4f}")
+            print(f"MSE: {metrics.get('mse', 0):.4f}")
+            print(f"Features: {metrics.get('n_features', 0)}")
+            print(f"Samples: {metrics.get('n_samples', 0)}")
             
             # Test predictions
-            print("\n🔮 Testing predictions...")
+            print("\nTesting predictions...")
             top_predictions = predictor.get_top_predictions(df, top_n=5)
             
             if not top_predictions.empty:
-                print("🏆 Top 5 Predicted Options:")
+                print("Top 5 Predicted Options:")
                 for _, row in top_predictions.iterrows():
                     print(f"  {row['rank']}. {row['ticker']} {row['type'].upper()} ${row['strike']:.2f} "
                           f"(Score: {row['ml_profit_score']:.4f})")
             
             return True
         else:
-            print("❌ Model training failed")
+            print("Model training failed")
             return False
             
     except Exception as e:
-        print(f"❌ Error training model: {e}")
+        print(f"Error training model: {e}")
         return False
 
 
 def validate_ml_model():
     """Validate the trained ML model."""
-    print("🔍 Validating ML Model...")
+    print("Validating ML Model...")
     print("=" * 50)
     
     try:
         # Load data
         df = load_latest_parquet()
         if df.empty:
-            print("❌ No data available for validation")
+            print("No data available for validation")
             return False
         
         # Create predictor and load model
         predictor = OptionsMLPredictor()
         if not predictor.load_model():
-            print("❌ No trained model found")
+            print("No trained model found")
             return False
         
         # Get predictions
         top_predictions = predictor.get_top_predictions(df, top_n=10)
         
         if not top_predictions.empty:
-            print("✅ Model validation successful!")
-            print(f"📊 Generated predictions for {len(top_predictions)} top options")
+            print("Model validation successful!")
+            print(f"Generated predictions for {len(top_predictions)} top options")
             
             # Show top 3 predictions
-            print("\n🏆 Top 3 ML Predictions:")
+            print("\nTop 3 ML Predictions:")
             for _, row in top_predictions.head(3).iterrows():
                 print(f"  {row['rank']}. {row['ticker']} {row['type'].upper()} ${row['strike']:.2f}")
                 print(f"     Expiry: {row['expiry_date']} | Score: {row['ml_profit_score']:.4f}")
@@ -104,11 +104,11 @@ def validate_ml_model():
             
             return True
         else:
-            print("❌ No predictions generated")
+            print("No predictions generated")
             return False
             
     except Exception as e:
-        print(f"❌ Error validating model: {e}")
+        print(f"Error validating model: {e}")
         return False
 
 
@@ -120,10 +120,10 @@ def main():
         success = train_ml_model()
     
     if success:
-        print("\n🎉 ML Model operations completed successfully!")
-        print("🌐 You can now use ML predictions in the web interface")
+        print("\nML Model operations completed successfully!")
+        print("You can now use ML predictions in the web interface")
     else:
-        print("\n💥 ML Model operations failed. Check the errors above.")
+        print("\nML Model operations failed. Check the errors above.")
 
 
 if __name__ == "__main__":

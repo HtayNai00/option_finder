@@ -1,0 +1,220 @@
+/* Options Finder - Dark Theme with True Black Background */
+
+/* Main background - True Black */
+html, body, .stApp, .stApp > header, [data-testid="stAppViewContainer"], 
+[data-testid="stAppViewContainer"] > div:first-child,
+.main .block-container, .main, section[data-testid="stSidebar"],
+div[class*="stApp"] {
+    background-color: #000000 !important;
+}
+
+/* Ensure all Streamlit containers have black background */
+.stMarkdown, .element-container, .stColumn, 
+div[data-testid="column"], div[data-testid="element-container"] {
+    background-color: #000000 !important;
+}
+
+/* All text should be white */
+h1, h2, h3, h4, h5, h6, p, div, span, label, .stMarkdown, 
+.stTextInput > label, .stSelectbox > label, .stMultiSelect > label,
+.stNumberInput > label, .stSegmentedControl > label,
+.stDataFrame, .stDataFrame table, .stDataFrame th, .stDataFrame td {
+    color: #ffffff !important;
+}
+
+/* Remove emoji/logos from headings */
+h1:before, h2:before, h3:before, h1:after, h2:after, h3:after {
+    content: none !important;
+}
+
+/* Main header styling */
+.main-header h1 {
+    color: #ffffff !important;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.main-header p {
+    color: #cccccc !important;
+}
+
+/* Filter row */
+.filter-row {
+    background-color: #000000 !important;
+}
+
+/* Streamlit widget backgrounds - dark gray */
+.stSelectbox > div > div, .stMultiSelect > div > div,
+.stNumberInput > div > div, .stSegmentedControl > div,
+div[data-baseweb="select"], div[data-baseweb="input"] {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #333333 !important;
+}
+
+/* Input fields */
+input, select, textarea {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #333333 !important;
+}
+
+/* Buttons */
+button, .stButton > button {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #333333 !important;
+}
+
+button:hover, .stButton > button:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* Selected buttons (primary type) */
+button[kind="primary"], .stButton > button[kind="primary"] {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #ffffff !important;
+}
+
+/* Expiry selector */
+.expiry-selector {
+    background: #000000 !important;
+    border: 1px solid #333333 !important;
+    border-radius: 8px;
+    padding: 8px 16px 16px 16px;
+    margin: 12px 0;
+}
+
+/* Remove any spacing between Today box and month labels */
+.expiry-selector > div:first-of-type {
+    margin-bottom: 4px !important;
+}
+
+/* Hide any empty containers or inputs in expiry section */
+div[data-testid="element-container"]:empty,
+div[data-testid="column"]:empty {
+    display: none !important;
+}
+
+/* Remove any default Streamlit input boxes that might appear empty */
+.stTextInput:has(input[value=""]) input[value=""],
+input[type="text"]:empty,
+input:not([value]):empty {
+    display: none !important;
+}
+
+/* Tables */
+.stDataFrame {
+    background-color: #000000 !important;
+}
+
+.stDataFrame table {
+    background-color: #000000 !important;
+}
+
+.stDataFrame th {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+.stDataFrame td {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Metrics */
+.stMetric {
+    background-color: #000000 !important;
+}
+
+.stMetric > div {
+    color: #ffffff !important;
+}
+
+.stMetric label {
+    color: #cccccc !important;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #000000 !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: #ffffff !important;
+}
+
+/* Info boxes */
+.stSuccess, .stInfo, .stWarning, .stError {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #333333 !important;
+}
+
+/* Remove any emoji icons from markdown */
+.stMarkdown h1 em:before, .stMarkdown h2 em:before, .stMarkdown h3 em:before {
+    display: none !important;
+}
+
+/* Month label in expiry selector */
+.month-label {
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    padding: 4px 0;
+}
+
+/* Hide empty containers that might appear after Today box */
+.expiry-selector > div[data-testid="element-container"]:empty,
+.expiry-selector > div:empty:not(.month-label),
+.expiry-selector > div[data-testid="stVerticalBlock"]:empty,
+.expiry-selector > div[data-testid="column"]:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+}
+
+/* Remove spacing right after the Today box */
+.expiry-selector > div:has(> div:contains("Today")) + div[data-testid="element-container"]:empty,
+.expiry-selector > div:has(> div:contains("Today")) + div[data-testid="stVerticalBlock"]:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide any empty divs or containers that might appear above date boxes */
+div[data-testid="element-container"]:not(:has(*)) {
+    display: none !important;
+}
+
+/* Ensure markdown headings don't create extra spacing/boxes */
+.stMarkdown h3 {
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+}
+
+/* Hide any invisible or empty input fields */
+input:not([value]), input[value=""], input[type="text"]:not([value]) {
+    display: none !important;
+}
+
+/* Ensure column containers are properly styled */
+div[data-testid="column"] {
+    background-color: #000000 !important;
+}
+
+/* Remove any padding/margin that creates empty space looking like a box */
+div[data-testid="column"]:empty::before,
+div[data-testid="column"]:empty::after {
+    display: none !important;
+    content: none !important;
+}
+

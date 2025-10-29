@@ -1,37 +1,80 @@
-# ---- Python ----
+# Python
 __pycache__/
 *.py[cod]
-*.egg-info/
-*.egg
-*.pyo
-*.pyd
+*$py.class
+*.so
 .Python
-env/
-venv/
-.venv/
-*.sqlite
-*.db
-
-# ---- Data ----
-data/
-*.csv
-*.parquet
-*.feather
-*.db
-*.sqlite3
-
-# ---- Notebooks ----
-.ipynb_checkpoints/
-*.ipynb
-
-# ---- Logs & cache ----
-*.log
-*.tmp
-*.bak
-*.swp
-*.DS_Store
-.cache/
-dist/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# ---- Environ
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Data files (keep structure but not actual data)
+data/snapshots/
+data/latest/*.parquet
+data/latest/*.csv
+!data/latest/.gitkeep
+
+# Config files (keep structure and essential configs)
+config/*.yaml
+!config/tickers.csv
+
+# Model files (can be large)
+models/*.pkl
+models/*.joblib
+
+# Logs
+*.log
+logs/
+
+# Streamlit
+.streamlit/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/

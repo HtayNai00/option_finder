@@ -160,18 +160,6 @@ Edit `config.py` to customize:
 - `GET /options/tickers` - Available ticker symbols
 - `POST /refresh` - Refresh data cache
 
-### Example API Usage
-```python
-import requests
-
-# Get options list
-response = requests.get("http://localhost:8000/options/list?tickers=AAPL&option_type=call")
-data = response.json()
-
-# Get Greeks for specific contract
-response = requests.get("http://localhost:8000/options/greeks/AAPL_20240119_150.00_call")
-greeks = response.json()
-```
 
 ## 🧮 Analytics Features
 
@@ -193,29 +181,13 @@ greeks = response.json()
 - **Expiry**: Range (1-60 days) or exact date
 - **Profit Potential**: Minimum profit ratio threshold
 
-## 🧪 Testing
-
-Run the test suite:
-
-```bash
-# Run all tests
-pytest
-
-# Run specific test modules
-pytest tests/test_analytics.py
-pytest tests/test_api.py
-pytest tests/test_integration.py
-
-# Run with coverage
-pytest --cov=core --cov=api
-```
 
 ## 🔄 Data Sources
 
 ### Supported Sources
 - **Local Parquet**: Primary data source
-- **Yahoo Finance**: Live data integration (optional)
-- **Polygon.io**: Professional data feed (optional)
+- **Yahoo Finance**: Live data integration
+
 
 ### Adding New Data Sources
 1. Extend `core/data_loader.py`
@@ -258,11 +230,7 @@ python api/server.py
    - Check that `data/latest/options_latest.parquet` exists
    - Verify data format matches expected schema
 
-2. **API connection issues**
-   - Ensure FastAPI server is running
-   - Check CORS settings for cross-origin requests
-
-3. **Missing dependencies**
+2. **Missing dependencies**
    - Run `pip install -r requirements.txt`
    - Check Python version compatibility
 
